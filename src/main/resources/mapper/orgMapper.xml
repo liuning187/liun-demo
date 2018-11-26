@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.primeton.liuning.demo.dao.OrgDao">
+
+    <sql id="columns">
+    ORG_NAME,
+    ORG_SHORTNAME,
+    PARENT_ID
+    </sql>
+
+    <sql id="columnsOfEntity">
+    #{orgName},
+    #{orgShortName},
+    #{parentId}
+    </sql>
+
+    <insert id="insertOrg" parameterType="OrgEntity" useGeneratedKeys="true" keyProperty="orgId">
+        INSERT INTO DEMO_ORGANIZATION(<include refid="columns"/>) VALUES(<include refid="columnsOfEntity"/>)
+    </insert>
+
+    <delete id="deleteOrg" parameterType="java.lang.Integer">
+        DELETE FROM DEMO_ORGANIZATION WHERE ORG_ID=#{orgId}
+    </delete>
+
+    <update id="updateOrg" parameterType="OrgEntity">
+      UPDATE DEMO_ORGANIZATION
+      <set>
+          <if test="orgName!=null and orgName!=''">ORG_NAME=#{orgName},</if>
+          <if test="orgShortName!=null and orgShortName!=''">ORG_SHORTNAME=#{orgShortName},</if>
+          <if test="parentId!=null">PARENT_ID=#{parentId}</if>
+      </set>
+        WHERE ORG_ID=#{orgId}
+    </update>
+
+    <select id="query" resultType="OrgEntity" parameterType="OrgEntity">
+        SELECT ORG_ID,<include refid="columns"/>
+        FROM DEMO_ORGANIZATION
+        <where>
+            <if test="parentId!=null">
+                AND PARENT_ID=#{parentId}
+            </if>
+            <if test="orgId!=null">
+                AND PARENT_ID=#{orgId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getOrg" resultType="OrgEntity" parameterType="OrgEntity">
+        SELECT ORG_ID,<include refid="columns"/>
+        FROM DEMO_ORGANIZATION
+        WHERE ORG_ID=#{id}
+    </select>
+
+    <select id="countUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(a.USER_ID)
+        FROM DEMO_USER a LEFT JOIN DEMO_ORGANIZATION b
+        ON a.ORG_ID = b.ORG_ID
+        WHERE b.ORG_ID = #{id}
+    </select>
+
+</mapper>
