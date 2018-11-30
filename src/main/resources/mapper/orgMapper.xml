@@ -48,7 +48,7 @@
     <select id="getOrg" resultType="OrgEntity" parameterType="OrgEntity">
         SELECT ORG_ID,<include refid="columns"/>
         FROM DEMO_ORGANIZATION
-        WHERE ORG_ID=#{id}
+        WHERE PARENT_ID=#{id}
     </select>
 
     <select id="countUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">

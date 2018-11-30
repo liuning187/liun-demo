@@ -1,7 +1,6 @@
 package com.primeton.liuning.demo.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.primeton.liuning.demo.exception.JsonResult;
 import com.primeton.liuning.demo.model.OrgEntity;
@@ -57,7 +56,7 @@ public interface IOrgService {
 	 * @return
 	 * @throws Exception
 	 */
-	OrgEntity getOrg(Integer orgId) throws Exception;
+	List<OrgEntity> getOrg(Integer orgId) throws Exception;
 
 	/**
 	 * 统计组织机构下用户数量

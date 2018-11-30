@@ -1,23 +1,17 @@
 package com.primeton.liuning.demo;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.primeton.liuning.demo.controller.OrgController;
 import com.primeton.liuning.demo.controller.UserController;
 import com.primeton.liuning.demo.model.OrgEntity;
 import com.primeton.liuning.demo.model.UserEntity;
 import com.primeton.liuning.demo.service.IUserService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author liuning

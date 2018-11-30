@@ -47,7 +47,7 @@ public class OrgController {
 		return iOrgService.removeOrg(id);
 	}
 
-	@PutMapping(value = "/{orgId}")
+	@PutMapping
 	@ApiOperation(value = "修改组织结构")
 	public JsonResult modifyOrg(@ApiParam("组织管理实体类") @RequestBody OrgEntity org) throws Exception {
 		return iOrgService.modifyOrg(org);
@@ -61,7 +61,7 @@ public class OrgController {
 
 	@GetMapping(value = "/{id}")
 	@ApiOperation(value = "根据ID查询组织")
-	public OrgEntity getOrg(@ApiParam("主键ID") @PathVariable("id") Integer id) throws Exception {
+	public List<OrgEntity> getOrg(@ApiParam("主键ID") @PathVariable("id") Integer id) throws Exception {
 		return iOrgService.getOrg(id);
 	}
 }

@@ -1,22 +1,31 @@
 package com.primeton.liuning.demo.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.primeton.liuning.demo.dto.UserDTO;
 import com.primeton.liuning.demo.exception.JsonResult;
 import com.primeton.liuning.demo.model.UserEntity;
 import com.primeton.liuning.demo.service.IUserService;
 
-import javax.servlet.http.HttpSession;
-import java.util.Map;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 用户控制层
+ * 
  * @author liuning
  * @date 2018/11/15 16:17
  */
@@ -42,7 +51,6 @@ public class UserController {
 		session.setAttribute("name", users.getUserName());
 		return iUserService.login(users);
 	}
-
 	/**
 	 * 新增
 	 * 
@@ -76,7 +84,7 @@ public class UserController {
 	 * @return
 	 * @throws Exception
 	 */
-	@PutMapping(value = "/{userId}")
+	@PutMapping
 	@ApiOperation(value = "修改用户")
 	public JsonResult modifyUser(@ApiParam("用户实体类") @RequestBody UserEntity user) throws Exception {
 		return iUserService.modifyUser(user);
@@ -94,8 +102,8 @@ public class UserController {
 	 */
 	@GetMapping
 	@ApiOperation(value = "用户查询全部")
-	public Map queryUsers(@ApiParam("每页条数")  Integer pageSize, @ApiParam("当前页")  Integer pageNumber,
-			@ApiParam("用户名")  String userName, @ApiParam("组织ID")  Integer orgId) throws Exception {
+	public Map queryUsers(@ApiParam("每页条数") Integer pageSize, @ApiParam("当前页") Integer pageNumber,
+			@ApiParam("用户名") String userName, @ApiParam("组织ID") Integer orgId) throws Exception {
 		return iUserService.queryUsers(pageSize, pageNumber, userName, orgId);
 	}
 

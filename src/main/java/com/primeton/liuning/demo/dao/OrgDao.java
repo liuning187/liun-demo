@@ -19,7 +19,7 @@ public interface OrgDao {
 
 	 List<OrgEntity> query(OrgEntity org);
 
-	 OrgEntity getOrg(Integer id);
+	 List<OrgEntity> getOrg(Integer id);
 
 	 int countUser(Integer id);
 

@@ -37,7 +37,7 @@ public class OrgServiceImpl implements IOrgService {
 	public JsonResult createOrg(OrgEntity org) throws Exception {
 		JsonResult jsonResult = new JsonResult<OrgEntity>(org);
 		if (org != null) {
-			if (org.getOrgName() == null || org.getOrgShortName() == null) {
+			if (org.getOrgName() == null) {
 				throw new DemoException(CustomEnum.ERROR_FORMATOGRNULL);
 			} else if (org.getParentId() == null) {
 				org.setParentId(0);
@@ -111,12 +111,12 @@ public class OrgServiceImpl implements IOrgService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public OrgEntity getOrg(Integer orgId) throws Exception {
-		OrgEntity org = new OrgEntity();
-		if (org != null) {
-			org = orgDao.getOrg(orgId);
+	public List<OrgEntity> getOrg(Integer orgId) throws Exception {
+		List<OrgEntity> list = new ArrayList<OrgEntity>();
+		if (list != null) {
+			list = orgDao.getOrg(orgId);
 		}
-		return org;
+		return list;
 	}
 
 	@Override
