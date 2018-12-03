@@ -5,7 +5,7 @@
 
     <groupId>com.primeton.ln</groupId>
     <artifactId>liun-demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>liun-demo</name>
