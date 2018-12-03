@@ -37,8 +37,8 @@ public class DemoTestCase {
 	public void testUser() throws Exception {
 		// 登录
 		UserEntity user1 = new UserEntity();
-		user1.setUserName("333");
-		user1.setUserPassword("333");
+		user1.setUserName("admin");
+		user1.setUserPassword("admin");
 		iUserService.login(user1);
 		// 新增
 		UserEntity user = new UserEntity();
